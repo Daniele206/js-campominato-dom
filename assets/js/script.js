@@ -7,6 +7,7 @@ const hard = document.getElementById('hard');
 // Element-none
 let numCell;
 let difficultySelected;
+const bomb = [];
 
 // Input
 const selectDifficulty = document.querySelector('.select-difficulty')
@@ -32,13 +33,17 @@ function addCell(num, difficulty){
   }else if(difficulty.value === 'normal'){
     cl.classList.add('whidth-normal');
   }else if(difficulty.value === 'hard'){
-    cl.classList.add('whidth-hard') ;
+    cl.classList.add('whidth-hard');
   };
 
   cl.addEventListener('click', function (){
     console.log(num);
-    this.classList.toggle('active');
-    this.innerHTML = (this.classList.contains('active')) ? this.innerHTML = num  : this.innerHTML = '';
+    this.innerHTML = num;
+    if(bomb.includes(num)){
+      cl.classList.add('bomb');
+    }else{
+      cl.classList.add('active');
+    }
   });
 
   resetGameBtn.addEventListener('click', function(){
@@ -71,6 +76,14 @@ if(selectDifficulty.value === 'easy'){
 }else if(selectDifficulty.value === 'hard'){
   numCell =49;
 };
+
+while(bomb.length < 16){
+  const nBomb = Math.ceil(Math.random() * numCell);
+
+  if(bomb.includes(nBomb) === false){
+    bomb.push(nBomb);
+  }
+}
 
 for(let i=1; i <= numCell; i++){
   const cell = addCell(i, selectDifficulty);

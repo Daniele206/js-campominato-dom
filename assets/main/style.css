@@ -43,6 +43,10 @@
   width: 90px;
 }
 
+.bomb{
+  background-color: violet;
+}
+
 .active{
   background-color: red;
 }
