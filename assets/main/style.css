@@ -24,13 +24,19 @@
   margin-top: 3rem;
 }
 
+.my-grid-block{
+  width: 630px;
+  aspect-ratio: 1;
+  margin-top: 3rem;
+}
+
 .my-cell{
   aspect-ratio: 1;
   border: 1px solid black;
   display: flex;
   align-items: center;
   justify-content: center;
-  cursor: pointer;
+  cursor: crosshair;
 }
 
 .whidth-easy{
@@ -44,9 +50,9 @@
 }
 
 .bomb{
-  background-color: violet;
+  background-color: red;
 }
 
 .active{
-  background-color: red;
+  background-color: green;
 }

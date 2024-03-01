@@ -1,5 +1,6 @@
 // Element
 const myGrid = document.querySelector('.my-grid');
+const myGridBlock = document.querySelector('.my-grid-block');
 const easy = document.getElementById('easy');
 const normal = document.getElementById('normal');
 const hard = document.getElementById('hard');
@@ -17,6 +18,7 @@ const playGameBtn = document.getElementById('play-game-btn');
 const resetGameBtn = document.getElementById('reset-game-btn');
 
 // Output
+const result = document.querySelector('.my-result');
 
 // Functions
 function rNone(element){
@@ -43,12 +45,20 @@ function addCell(num, difficulty){
       cl.classList.add('bomb');
     }else{
       cl.classList.add('active');
+    };
+
+    if(cl.classList.contains('bomb') === true){
+      result.innerHTML = 'Hai perso';
+      myGridBlock.classList.remove('d-none');
     }
   });
 
   resetGameBtn.addEventListener('click', function(){
     cl.classList.remove('active');
+    cl.classList.remove('bomb');
+    myGridBlock.classList.add('d-none');
     cl.innerHTML = '';
+    result.innerHTML = '';
   });
 
   return cl;
@@ -83,6 +93,7 @@ while(bomb.length < 16){
   if(bomb.includes(nBomb) === false){
     bomb.push(nBomb);
   }
+  console.log(nBomb);
 }
 
 for(let i=1; i <= numCell; i++){
