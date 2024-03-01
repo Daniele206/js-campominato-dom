@@ -56,3 +56,7 @@
 .active{
   background-color: green;
 }
+
+.dont-active{
+  background-color: orange;
+}

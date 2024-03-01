@@ -4,8 +4,10 @@ const myGridBlock = document.querySelector('.my-grid-block');
 const easy = document.getElementById('easy');
 const normal = document.getElementById('normal');
 const hard = document.getElementById('hard');
+let allora = '';
 
 // Element-none
+let cell;
 let numCell;
 let difficultySelected;
 const bomb = [];
@@ -30,6 +32,7 @@ function rNone(element){
 function addCell(num, difficulty){
   const cl = document.createElement('div');
   cl.classList.add('my-cell');
+  cl.classList.add('my-cell' + num);
 
   if(difficulty.value === 'easy'){
     cl.classList.add('whidth-easy');
@@ -42,7 +45,7 @@ function addCell(num, difficulty){
   cl.addEventListener('click', function (){
     console.log(num);
     this.innerHTML = num;
-    
+
     if(bomb.includes(num)){
       cl.classList.add('bomb');
     }else{
@@ -58,12 +61,13 @@ function addCell(num, difficulty){
     }
 
     if(cl.classList.contains('bomb') === true){
-      result.innerHTML = 'Hai perso';
+      result.innerHTML = `Hai fatto ${point.length} punti`;
       myGridBlock.classList.remove('d-none');
+      allora = 'true';
     }
 
     if(point.length === numCell - 16){
-      result.innerHTML = 'Hai vinto';
+      result.innerHTML = `Hai fatto ${point.length} punti, IL MASSIMO!!!!`;
       myGridBlock.classList.remove('d-none');
     }
   });
@@ -82,13 +86,13 @@ function addCell(num, difficulty){
 //------------------------------------------------------------------
 easy.addEventListener('click', function(){
   location.reload();
-})
+});
 normal.addEventListener('click', function(){
   location.reload();
-})
+});
 hard.addEventListener('click', function(){
   location.reload();
-})
+});
 
 playGameBtn.addEventListener('click', function(){
   rNone(myGrid);
@@ -104,14 +108,13 @@ if(selectDifficulty.value === 'easy'){
 
 while(bomb.length < 16){
   const nBomb = Math.ceil(Math.random() * numCell);
-
   if(bomb.includes(nBomb) === false){
     bomb.push(nBomb);
   }
-  console.log(nBomb);
-}
+};
 
 for(let i=1; i <= numCell; i++){
-  const cell = addCell(i, selectDifficulty);
+  cell = addCell(i, selectDifficulty);
   myGrid.append(cell);
-}
+
+};
