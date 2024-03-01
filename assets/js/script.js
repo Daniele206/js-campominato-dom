@@ -9,6 +9,7 @@ const hard = document.getElementById('hard');
 let numCell;
 let difficultySelected;
 const bomb = [];
+const point = [];
 
 // Input
 const selectDifficulty = document.querySelector('.select-difficulty')
@@ -41,14 +42,28 @@ function addCell(num, difficulty){
   cl.addEventListener('click', function (){
     console.log(num);
     this.innerHTML = num;
+    
     if(bomb.includes(num)){
       cl.classList.add('bomb');
     }else{
       cl.classList.add('active');
     };
 
+    if(bomb.includes(num) === false){
+      if(cl.classList.contains('active')){
+        if(point.includes(num) === false){
+          point.push(num);
+        }
+      }
+    }
+
     if(cl.classList.contains('bomb') === true){
       result.innerHTML = 'Hai perso';
+      myGridBlock.classList.remove('d-none');
+    }
+
+    if(point.length === numCell - 16){
+      result.innerHTML = 'Hai vinto';
       myGridBlock.classList.remove('d-none');
     }
   });
@@ -84,7 +99,7 @@ if(selectDifficulty.value === 'easy'){
 }else if(selectDifficulty.value === 'normal'){
   numCell = 81;
 }else if(selectDifficulty.value === 'hard'){
-  numCell =49;
+  numCell = 49;
 };
 
 while(bomb.length < 16){
