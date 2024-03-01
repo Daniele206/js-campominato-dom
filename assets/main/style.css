@@ -1,0 +1,48 @@
+.main-wrapper{
+  min-height: 100vh;
+}
+
+.top-barr{
+  position: relative;
+}
+
+.my-title{
+  font-size: 4rem;
+  padding-top: 2rem;
+  justify-self: center;
+}
+
+.my-menu{
+  position: absolute;
+  top: 0;
+  right: 0;
+}
+
+.my-grid{
+  width: 630px;
+  aspect-ratio: 1;
+  margin-top: 3rem;
+}
+
+.my-cell{
+  aspect-ratio: 1;
+  border: 1px solid black;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+}
+
+.whidth-easy{
+  width: 63px;
+}
+.whidth-normal{
+  width: 70px;
+}
+.whidth-hard{
+  width: 90px;
+}
+
+.active{
+  background-color: red;
+}
