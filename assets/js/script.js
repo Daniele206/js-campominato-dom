@@ -32,7 +32,7 @@ function rNone(element){
 function addCell(num, difficulty){
   const cl = document.createElement('div');
   cl.classList.add('my-cell');
-  cl.classList.add('my-cell' + num);
+  cl._cellID = num;
 
   if(difficulty.value === 'easy'){
     cl.classList.add('whidth-easy');
@@ -44,7 +44,6 @@ function addCell(num, difficulty){
 
   cl.addEventListener('click', function (){
     console.log(num);
-    this.innerHTML = num;
 
     if(bomb.includes(num)){
       cl.classList.add('bomb');
@@ -64,11 +63,13 @@ function addCell(num, difficulty){
       result.innerHTML = `Hai fatto ${point.length} punti`;
       myGridBlock.classList.remove('d-none');
       allora = 'true';
+      showBomb();
     }
 
     if(point.length === numCell - 16){
       result.innerHTML = `Hai fatto ${point.length} punti, IL MASSIMO!!!!`;
       myGridBlock.classList.remove('d-none');
+      showBomb();
     }
   });
 
@@ -81,6 +82,17 @@ function addCell(num, difficulty){
   });
 
   return cl;
+};
+
+function showBomb(){
+  const allCell = document.querySelectorAll('.my-cell');
+  console.log(allCell.length);
+  for(let i = 0; i < allCell.length; i++){
+    const oneCell = allCell[i];
+    if(bomb.includes(oneCell._cellID)){
+      oneCell.classList.add('bomb');
+    };
+  };
 };
 
 //------------------------------------------------------------------
@@ -110,11 +122,11 @@ while(bomb.length < 16){
   const nBomb = Math.ceil(Math.random() * numCell);
   if(bomb.includes(nBomb) === false){
     bomb.push(nBomb);
+    console.log(nBomb);
   }
 };
 
 for(let i=1; i <= numCell; i++){
   cell = addCell(i, selectDifficulty);
   myGrid.append(cell);
-
 };
